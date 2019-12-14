@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:eTravelAgencyMobileApp.ViewModels"
+             xmlns:converter="clr-namespace:eTravelAgencyMobileApp.Helpers"
+             mc:Ignorable="d"
+             x:Class="eTravelAgencyMobileApp.Views.CityDetailPage">
+    <ContentPage.BindingContext>
+        <vm:CityDetailViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:ByteToImageConverter 
+                x:Key="imgConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+        
+    <ContentPage.Content>
+        <ScrollView Orientation="Vertical">
+            <StackLayout>
+                
+                    <Image 
+                   Aspect="Fill"
+                        HeightRequest="200"
+                   Source="{Binding City.Picture,
+                   Converter={StaticResource imgConverter}}"/>
+                <CarouselView ItemsSource="{Binding Attractions}">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Frame BorderColor="ForestGreen">
+                                    <Image Source="{Binding Picture,
+                                       Converter={StaticResource imgConverter}}"/>
+                                </Frame>
+                                <Label Text="{Binding AttractionName}"/>
+                                <Label Text="{Binding AttractionDetails}"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                    <CarouselView.EmptyView>
+                        <Label 
+                            HorizontalOptions="CenterAndExpand"
+                            Text="No attractions to display"/>
+                    </CarouselView.EmptyView>
+                </CarouselView>
+
+                <CollectionView ItemsSource="{Binding Hotels}" EmptyView="No hotels added yet. Coming soon...">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout 
+                            Orientation="Vertical"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid ColumnSpacing="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <StackLayout Orientation="Horizontal"
+                                             HorizontalOptions="FillAndExpand">
+                                    <StackLayout HorizontalOptions="CenterAndExpand"
+                                                 WidthRequest="250"
+                                                 BackgroundColor="Ivory">
+                                        <Image  Source="{Binding Picture,
+                                       Converter={StaticResource imgConverter}}"
+                                       HeightRequest="200"
+                                       WidthRequest="200"/>
+                                    </StackLayout>
+                                    <StackLayout Grid.Column="1"
+                                                 BackgroundColor="DeepSkyBlue"
+                                                 WidthRequest="250"
+                                                 >
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Name:"/>
+                                                    <Span Text="{Binding HotelName}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label HorizontalOptions="StartAndExpand">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Address:"/>
+                                                    <Span Text="{Binding HotelAddress}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label HorizontalOptions="StartAndExpand"
+                                               Text="{Binding TotalVisits,
+                                               StringFormat='Visits: {0:F0}'}"/>
+                                        <Button Text="Details" 
+                                                BindingContext="{Binding Id}"
+                                                Clicked="Hotel_Clicked"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                
+                
+                <Button BindingContext="{Binding City.Id}"
+                        Text="Make a reservation" 
+                        Clicked="Button_MakeReservation"/>
+            </StackLayout>
+            
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

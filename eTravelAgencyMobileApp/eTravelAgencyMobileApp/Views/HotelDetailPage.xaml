@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:eTravelAgencyMobileApp.ViewModels"
+             xmlns:converter="clr-namespace:eTravelAgencyMobileApp.Helpers"
+             mc:Ignorable="d"
+             x:Class="eTravelAgencyMobileApp.Views.HotelDetailPage">
+    <ContentPage.BindingContext>
+        <vm:HotelDetailViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:ByteToImageConverter x:Key="imgConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout>
+                <Frame>
+                    <Image Source="{Binding Hotel.Picture,
+                       Converter={StaticResource imgConverter}}" 
+                       Aspect="AspectFit"/>
+                </Frame>
+                <StackLayout>
+                    <Label Text="{Binding Hotel.HotelName,
+                           StringFormat='Name: {0:N}'}"/>
+                    <Label Text="{Binding Hotel.HotelAddress,
+                           StringFormat='Address: {0:N}'}"/>
+                    <Label Text="{Binding Hotel.Rating,
+                           StringFormat='Average Rating:{0:F0}'}"/>
+                    <Label Text="{Binding Hotel.TotalVisits,
+                           StringFormat='Total Visits: {0:N}'}"/>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout>
+                <CollectionView ItemsSource="{Binding RecommendedHotels}"
+                                Header="Recommended Hotels:"
+                                ItemsLayout="HorizontalList">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Frame>
+                                    <Image Source="{Binding Picture,Converter={StaticResource imgConverter}}"/>
+                                </Frame>
+                                <Label Text="{Binding HotelName,StringFormat='Name: {0:N}'}"/>
+                                <Label Text="{Binding HotelAddress,StringFormat='Address: {0:N}'}"/>
+                                <Label Text="{Binding Rating,StringFormat='Rating: {0:N}'}"/>
+                                <Button Text="See More" BindingContext="{Binding Id}"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+            <StackLayout>
+                <CollectionView ItemsSource="{Binding Reviews}"
+                                EmptyView="No reviews yet...">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Label Text="{Binding UserName,StringFormat='User Name: {0:N}'}"/> 
+                                <Label Text="{Binding Rating,StringFormat='Rating: {0:N}'}"/>
+                                <Label Text="{Binding RatingDate,
+                                       StringFormat='Date: {0:dd.MM.yyyy}'}"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

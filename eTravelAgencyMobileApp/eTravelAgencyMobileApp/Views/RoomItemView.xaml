@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
+             mc:Ignorable="d"
+             x:Class="eTravelAgencyMobileApp.Views.RoomItemView">
+  <ContentView.Content>
+        <StackLayout BackgroundColor="DarkOrange"
+                                     Orientation="Horizontal">
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Room Type:"/>
+                        <Span Text="{Binding _room.RoomTypeName}" 
+                                              FontAttributes="Bold"/>
+                        <Span Text="{x:Static system:Environment.NewLine}"/>
+                        <Span Text="Room Details:"/>
+                        <Span Text="{Binding _room.RoomDetails}"/>
+                        <Span Text="{x:Static system:Environment.NewLine}"/>
+                        <Span Text="Number Of Rooms:"/>
+                        <Span Text="{Binding _room.NumberOfRooms,StringFormat='{0:F0}'}"
+                                              FontAttributes="Bold"/>
+                        <Span Text="{x:Static system:Environment.NewLine}"/>
+                        <Span Text="Available: "/>
+                        <Span Text="{Binding _room.Available}"
+                                              FontAttributes="Bold"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <StackLayout>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Order:" />
+                            <Span x:Name="mySpan" Text="{Binding OrderedRooms}"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Stepper x:Name="myStepper"
+                         Maximum="5"
+                         Increment="1"
+                         BindingContext="{Binding OrderedRooms}"
+                         ValueChanged="myStepper_ValueChanged" />
+            </StackLayout>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

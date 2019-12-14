@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:eTravelAgencyMobileApp.ViewModels"
+             xmlns:views="clr-namespace:eTravelAgencyMobileApp.Views"
+             xmlns:converter="clr-namespace:eTravelAgencyMobileApp.Helpers"
+             mc:Ignorable="d"
+             x:Class="eTravelAgencyMobileApp.Views.OffersPage">
+    <ContentPage.BindingContext>
+        <vm:OffersViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:ByteToImageConverter x:Key="imgConverter"/>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Row="0">
+                <ScrollView 
+                        Orientation="Horizontal"
+                        BackgroundColor="AliceBlue">
+                    <CollectionView 
+                                    x:Name="tOffer_Collection"
+                                    ItemsSource="{Binding transportsOffer.transports}"
+                                    ItemsLayout="HorizontalList"
+                                    SelectionMode="Single">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout BackgroundColor="Beige">
+                                    <Frame BorderColor="DarkOrange">
+                                        <Image Source="{Binding tOffer.ThumbnailImage,
+                                                    Converter={StaticResource imgConverter}}"
+                                                    WidthRequest="90"
+                                                    HeightRequest="90"/>
+                                    </Frame>
+                                    <!-- Better with formatted text-->
+                                    <Label HorizontalOptions="Center" Text="{Binding Name}"/>
+                                    <Label Text="{Binding tOffer.Price,
+                                              StringFormat='Price: {0:N}'}"/>
+                                    <Label Text="{Binding tOffer.Discount,
+                                               StringFormat='Discount: {0:N}'}"/>
+                                    <Label Text="{Binding tOffer.StartDate,
+                                              StringFormat='Start Date: {0:dd.MM.yyyy}'}"/>
+                                    <Label Text="{Binding tOffer.EndDate,
+                                               StringFormat='End Date: {0:dd.MM.yyyy}'}"/>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </ScrollView>
+            </StackLayout>
+            <StackLayout Grid.Row="1" BackgroundColor="DarkKhaki">
+                <ScrollView Orientation="Horizontal">
+                    <CollectionView x:Name="hOffer_Collection"
+                                        ItemsSource="{Binding hotelOffers.hotels}"
+                                        ItemsLayout="HorizontalList"
+                                        SelectionMode="Single">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout BackgroundColor="LightGreen">
+                                    <Frame BorderColor="DarkGreen">
+                                        <Image Source="{Binding hOffer.ThumbnailImage,Converter={StaticResource imgConverter}}"
+                                                   HeightRequest="90"
+                                                   WidthRequest="90"
+                                                   />
+                                    </Frame>
+                                    <Label HorizontalOptions="Start" Text="{Binding Name,StringFormat='Hotel: {0:N}'}"/>
+                                    <Label HorizontalOptions="Start" Text="{Binding hOffer.Discount,StringFormat='Discount: {0:N}'}" />
+                                    <Label HorizontalOptions="Start" Text="{Binding hOffer.PricePerPerson,StringFormat='Price: {0:N}'}" />
+                                    <Label HorizontalOptions="Start" Text="{Binding hOffer.StartDate,StringFormat='Start Date: {0:dd.MM.yyyy}'}" />
+                                    <Label HorizontalOptions="Start" Text="{Binding hOffer.EndDate,StringFormat='End Date: {0:dd.MM.yyyy}'}" />
+
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </ScrollView>
+            </StackLayout>
+            <StackLayout Grid.Row="2">
+
+                <Button Text="Proceed"
+                            Clicked="Button_Clicked"/>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

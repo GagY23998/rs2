@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:eTravelAgencyMobileApp.ViewModels"
+             xmlns:converter="clr-namespace:eTravelAgencyMobileApp.Helpers"
+             mc:Ignorable="d"
+             x:Class="eTravelAgencyMobileApp.Views.FeedsPage">
+    <ContentPage.BindingContext>
+        <vm:FeedViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:ByteToImageConverter x:Key="imgConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+           
+
+                <CollectionView 
+                    Grid.Row="0"
+                    ItemsSource="{Binding Countries}"
+                    Header="Countries"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    ItemSizingStrategy="MeasureAllItems"
+                    >
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout 
+                            Orientation="Vertical"
+                            VerticalItemSpacing="10"
+                            HorizontalItemSpacing="5"
+                            Span="2"
+                            />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+
+                        <DataTemplate>
+
+                            <Grid RowSpacing="10" ColumnSpacing="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                            <StackLayout WidthRequest="200"
+                                         Margin="21,0,21,0">
+                                <Image HeightRequest="90"
+                                           WidthRequest="90"
+                                           Source="{Binding Picture,
+                                           Converter={StaticResource imgConverter}}"/>
+                                    <Label HorizontalOptions="Center" Text="{Binding CountryName,
+                                           StringFormat='Country: {0:N}'}"/>
+                                <Label Text="{Binding ZipCode,StringFormat='Zip Code: {0:N}'}"/>
+                                <Label HorizontalOptions="Center" Text="{Binding CountryDetails,
+                                           StringFormat='Details: {0:N}'}"/>
+                                    <Button Text="More"
+                                            BindingContext="{Binding Id}"
+                                            Clicked="Button_Clicked"/>
+                            </StackLayout>
+                   </Grid>
+                            
+                            
+                            
+                        </DataTemplate>
+                        
+                    </CollectionView.ItemTemplate>
+                    
+                    
+                </CollectionView>
+            <StackLayout Grid.Row="1">
+                <CollectionView ItemsSource="{Binding Transports}"
+                                Header="Transport Companies"
+                                ItemsLayout="HorizontalList">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Frame>
+                                    <Image  HeightRequest="90"
+                                            WidthRequest="90"
+                                            Source="{Binding Picture,Converter={StaticResource imgConverter}}"/>
+                                </Frame>
+                                <Label HorizontalOptions="Center" 
+                                       Text="{Binding TransportCompanyName}"/>
+                                <Label HorizontalOptions="Center" 
+                                       Text="{Binding TotalReservations}"/>
+                                <Button HorizontalOptions="Center" 
+                                        Text="Details"
+                                        BindingContext="{Binding Id}"
+                                        Clicked="Company_Clicked"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout> 
+            
+            <StackLayout Grid.Row="2" 
+                         VerticalOptions="Center"
+                         Margin="20,0,0,0">
+                <CollectionView ItemsSource="{Binding Hotels}"
+                                Header="Hotels"
+                                ItemsLayout="HorizontalList">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Image HeightRequest="90"
+                                       WidthRequest="90"
+                                       Source="{Binding Picture,
+                                       Converter={StaticResource imgConverter}}"/>
+                                <Label Text="{Binding HotelName}"/>
+                                <Label Text="{Binding TotalVisits,
+                                       StringFormat='Total Visits: {0:F0}'}"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+            <StackLayout Grid.Row="3">
+                <Label 
+                    HorizontalOptions="CenterAndExpand"
+                    Text="{Binding AllTimeVisits,
+                   StringFormat='All-Time Total Visits: {0:F0}'}"/>
+            </StackLayout>
+       </Grid>
+        
+        
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,358 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{00B4336C-09D2-449A-8FA1-7948B73943D9}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>eTravelAgency.Desktop</RootNamespace>
+    <AssemblyName>eTravelAgency.Desktop</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Flurl, Version=2.8.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Flurl.2.8.2\lib\net40\Flurl.dll</HintPath>
+    </Reference>
+    <Reference Include="Flurl.Http, Version=2.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Flurl.Http.2.4.2\lib\net46\Flurl.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.6.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="APIService.cs" />
+    <Compile Include="Attractions\frmAttraction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Attractions\frmAttraction.Designer.cs">
+      <DependentUpon>frmAttraction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Attractions\frmAttractionDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Attractions\frmAttractionDetails.Designer.cs">
+      <DependentUpon>frmAttractionDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cities\frmCities.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cities\frmCities.Designer.cs">
+      <DependentUpon>frmCities.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cities\frmCityDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cities\frmCityDetails.Designer.cs">
+      <DependentUpon>frmCityDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Countries\frmCountryDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Countries\frmCountryDetails.Designer.cs">
+      <DependentUpon>frmCountryDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Countries\frmCountry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Countries\frmCountry.Designer.cs">
+      <DependentUpon>frmCountry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hotels\frmHotelMainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hotels\frmHotelMainMenu.Designer.cs">
+      <DependentUpon>frmHotelMainMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hotels\HotelRooms\frmHotelRooms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hotels\HotelRooms\frmHotelRooms.Designer.cs">
+      <DependentUpon>frmHotelRooms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hotels\HotelRooms\frmHotelRoomsDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hotels\HotelRooms\frmHotelRoomsDetail.Designer.cs">
+      <DependentUpon>frmHotelRoomsDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hotels\Hotel\frmHotel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hotels\Hotel\frmHotel.Designer.cs">
+      <DependentUpon>frmHotel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hotels\Hotel\frmHotelDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hotels\Hotel\frmHotelDetails.Designer.cs">
+      <DependentUpon>frmHotelDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hotels\Offer\frmHotelOffer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hotels\Offer\frmHotelOffer.Designer.cs">
+      <DependentUpon>frmHotelOffer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hotels\Offer\frmHotelOfferDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hotels\Offer\frmHotelOfferDetails.Designer.cs">
+      <DependentUpon>frmHotelOfferDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reservations\frmReservationDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reservations\frmReservationDetails.Designer.cs">
+      <DependentUpon>frmReservationDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reservations\frmReservations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reservations\frmReservations.Designer.cs">
+      <DependentUpon>frmReservations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reviews\frmReviewDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reviews\frmReviewDetails.Designer.cs">
+      <DependentUpon>frmReviewDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reviews\frmReviews.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reviews\frmReviews.Designer.cs">
+      <DependentUpon>frmReviews.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transports\Company\frmCompanyDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transports\Company\frmCompanyDetails.Designer.cs">
+      <DependentUpon>frmCompanyDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transports\Company\frmTransportCompany.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transports\Company\frmTransportCompany.Designer.cs">
+      <DependentUpon>frmTransportCompany.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transports\frmTransportMainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transports\frmTransportMainMenu.Designer.cs">
+      <DependentUpon>frmTransportMainMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transports\Offer\frmTransportOfferDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transports\Offer\frmTransportOfferDetails.Designer.cs">
+      <DependentUpon>frmTransportOfferDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transports\Offer\frmTransportOffers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transports\Offer\frmTransportOffers.Designer.cs">
+      <DependentUpon>frmTransportOffers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transports\Type\frmTransportTypeDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transports\Type\frmTransportTypeDetails.Designer.cs">
+      <DependentUpon>frmTransportTypeDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transports\Type\frmTransportTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transports\Type\frmTransportTypes.Designer.cs">
+      <DependentUpon>frmTransportTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\frmUserDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\frmUserDetails.Designer.cs">
+      <DependentUpon>frmUserDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\frmUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\frmUsers.Designer.cs">
+      <DependentUpon>frmUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmIndex.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmIndex.Designer.cs">
+      <DependentUpon>frmIndex.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Users\frmUsersMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\frmUsersMenu.Designer.cs">
+      <DependentUpon>frmUsersMenu.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Attractions\frmAttraction.resx">
+      <DependentUpon>frmAttraction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Attractions\frmAttractionDetails.resx">
+      <DependentUpon>frmAttractionDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cities\frmCities.resx">
+      <DependentUpon>frmCities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cities\frmCityDetails.resx">
+      <DependentUpon>frmCityDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Countries\frmCountryDetails.resx">
+      <DependentUpon>frmCountryDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Countries\frmCountry.resx">
+      <DependentUpon>frmCountry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hotels\frmHotelMainMenu.resx">
+      <DependentUpon>frmHotelMainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hotels\HotelRooms\frmHotelRooms.resx">
+      <DependentUpon>frmHotelRooms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hotels\HotelRooms\frmHotelRoomsDetail.resx">
+      <DependentUpon>frmHotelRoomsDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hotels\Hotel\frmHotel.resx">
+      <DependentUpon>frmHotel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hotels\Hotel\frmHotelDetails.resx">
+      <DependentUpon>frmHotelDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hotels\Offer\frmHotelOffer.resx">
+      <DependentUpon>frmHotelOffer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hotels\Offer\frmHotelOfferDetails.resx">
+      <DependentUpon>frmHotelOfferDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reservations\frmReservationDetails.resx">
+      <DependentUpon>frmReservationDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reservations\frmReservations.resx">
+      <DependentUpon>frmReservations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reviews\frmReviewDetails.resx">
+      <DependentUpon>frmReviewDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reviews\frmReviews.resx">
+      <DependentUpon>frmReviews.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transports\Company\frmCompanyDetails.resx">
+      <DependentUpon>frmCompanyDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transports\Company\frmTransportCompany.resx">
+      <DependentUpon>frmTransportCompany.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transports\frmTransportMainMenu.resx">
+      <DependentUpon>frmTransportMainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transports\Offer\frmTransportOfferDetails.resx">
+      <DependentUpon>frmTransportOfferDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transports\Offer\frmTransportOffers.resx">
+      <DependentUpon>frmTransportOffers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transports\Type\frmTransportTypeDetails.resx">
+      <DependentUpon>frmTransportTypeDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transports\Type\frmTransportTypes.resx">
+      <DependentUpon>frmTransportTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\frmUserDetails.resx">
+      <DependentUpon>frmUserDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\frmUsers.resx">
+      <DependentUpon>frmUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmIndex.resx">
+      <DependentUpon>frmIndex.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Users\frmUsersMenu.resx">
+      <DependentUpon>frmUsersMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\eTravelAgency.Core\eTravelAgency.Core.csproj">
+      <Project>{eecbf21b-180a-4dec-8785-451511be084c}</Project>
+      <Name>eTravelAgency.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

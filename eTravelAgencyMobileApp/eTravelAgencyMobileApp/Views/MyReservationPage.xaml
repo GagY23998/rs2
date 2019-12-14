@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:eTravelAgencyMobileApp.ViewModels"
+             xmlns:converter="clr-namespace:eTravelAgencyMobileApp.Helpers"
+             mc:Ignorable="d"
+             x:Class="eTravelAgencyMobileApp.Views.MyReservationPage">
+    <ContentPage.BindingContext>
+        <vm:MyReservationsViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <converter:ByteToImageConverter x:Key="imgConverter"/>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame>
+                <Image WidthRequest="90"
+                       HeightRequest="90"
+                       Source="{Binding Picture,
+                       Converter={StaticResource imgConverter}}"/>
+            </Frame>
+            <Label Text="{Binding FirstName,
+                   StringFormat='First Name: {0:N}'}"/>
+            <Label Text="{Binding LastName,
+                   StringFormat='Last Name: {0:N}'}"/>
+            <ListView ItemsSource="{Binding Reservations}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding HotelName,
+                                   StringFormat='Hotel: {0:N}'}"/>
+                                <Label Text="{Binding TransportName,
+                                StringFormat='Transport Company: {0:N}'}"/>
+                                <Label Text="{Binding DateReserved,
+                                   StringFormat='Reservation Date: {0:dd.MM.yyyy}'}"/>
+                                <Label Text="{Binding TripDate,
+                                    StringFormat='Trip Date: {0:N}'}"/>
+                                <Label Text="{Binding Price,
+                                   StringFormat='Total Cost: {0:F2}'}"/>
+                                <Label Text="{Binding Canceled,
+                                   StringFormat='Canceled: {0:N}'}"/>
+                                <Label Text="{Binding Finished,
+                                   StringFormat='Finished: {0:N}'}"/>
+                                <StackLayout Orientation="Horizontal">
+                                    <Button Text="Cancel Reservation"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center"
+                                    BindingContext="{Binding Id}"
+                                    Clicked="Reservation_Canceled"/>
+                                    <Button Text="Rate Your Trip" 
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Center"
+                                        Clicked="Submit_Rating"/>
+                                    <StackLayout x:Name="comment_Layout"
+                                             IsVisible="False">
+
+                                        <Entry x:Name="HotelRating"
+                                           Placeholder="Rate Hotel"/>
+                                        <Entry x:Name="TransportRating" 
+                                           Placeholder="Rate Transport"/>
+                                       
+                                        <Button Text="Submit" BindingContext="{Binding Id}" Clicked="Button_Clicked"/>
+                                    </StackLayout>
+                                </StackLayout>
+
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

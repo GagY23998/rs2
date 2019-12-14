@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
+             xmlns:vm="clr-namespace:eTravelAgencyMobileApp.ViewModels"
+             xmlns:converter="clr-namespace:eTravelAgencyMobileApp.Helpers"
+             mc:Ignorable="d"
+             x:Class="eTravelAgencyMobileApp.Views.ReservationDetailsPage">
+    <ContentPage.BindingContext>
+        <vm:ReservationDetailViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:ByteToImageConverter x:Key="imgConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <!--<Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+        </Grid>-->
+        <StackLayout>
+            <FlexLayout AlignItems="Start"
+                            Wrap="Wrap">
+                <StackLayout x:Name="tOffer_Stack"
+                             Orientation="Horizontal">
+                    <Frame>
+                        <Image HeightRequest="90"
+                               WidthRequest="90"
+                               Source="{Binding tOffer.ThumbnailImage,
+                               Converter={StaticResource imgConverter}}"/>
+                    </Frame>
+                    <Frame HorizontalOptions="CenterAndExpand"
+                           WidthRequest="210">
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Hotel Name:"/>
+                                    <Span Text="{Binding Name}"/>
+                                    <Span Text="{x:Static system:Environment.NewLine}"/>
+                                    <Span Text="Start Date:"/>
+                                    <Span Text="{Binding tOffer.StartDate,
+                                          StringFormat='{0:dd.MM.yyy}'}" 
+                                          FontAttributes="Bold" />
+                                    <Span Text="{x:Static system:Environment.NewLine}"/>
+                                    <Span Text="End Date: "/>
+                                    <Span Text="{Binding tOffer.EndDate,
+                                          StringFormat='{0:dd.MM.yyyy}'}"/>
+                                    <Span Text="{x:Static system:Environment.NewLine}"/>
+                                    <Span Text="Discount: "/>
+                                    <Span Text="{Binding tOffer.Discount,
+                                          StringFormat='{0:F0}'}"/>
+                                    <Span Text="{x:Static system:Environment.NewLine}"/>
+                                    <Span Text="Price:"/>
+                                    <Span Text="{Binding tOffer.Price,
+                                          StringFormat='{0:F2}'}"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </Frame>
+                </StackLayout>
+                <StackLayout BindingContext="{Binding HotelOffer}"
+                             Orientation="Horizontal"
+                             VerticalOptions="CenterAndExpand"
+                             >
+                    <Frame>
+                        <Image
+                            HeightRequest="90"
+                            WidthRequest="90"
+                            Source="{Binding hOffer.ThumbnailImage,
+                            Converter={StaticResource imgConverter}}"/>
+                    </Frame>
+                    <Frame WidthRequest="210">
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Hotel Name:"/>
+                                    <Span Text="{Binding Name}"/>
+                                    <Span Text="{x:Static system:Environment.NewLine}"/>
+                                    <Span Text="Start Date:"/>
+                                    <Span Text="{Binding hOffer.StartDate,
+                                          StringFormat='{0:dd.MM.yyyy}'}" 
+                                          FontAttributes="Bold" />
+                                    <Span Text="{x:Static system:Environment.NewLine}"/>
+                                    <Span Text="End Date: "/>
+                                    <Span Text="{Binding hOffer.EndDate,
+                                          StringFormat='{0:dd.MM.yyyy}'}"
+                                          FontAttributes="Bold"/>
+                                    <Span Text="{x:Static system:Environment.NewLine}"/>
+                                    <Span Text="Discount: "/>
+                                    <Span Text="{Binding hOffer.Discount,
+                                          StringFormat='{0:F0}'}"/>
+                                    <Span Text="{x:Static system:Environment.NewLine}"/>
+                                    <Span Text="Price:"/>
+                                    <Span Text="{Binding hOffer.PricePerPerson,
+                                          StringFormat='{0:F2}'}"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </Frame>
+                </StackLayout>
+            </FlexLayout>
+            <StackLayout HorizontalOptions="CenterAndExpand">
+                <Label Text="Number of Persons:"/>
+                <Entry Text="{Binding NumberOfPersons}" x:Name="numPersons_Label" Unfocused="NumberOfPersons_Changed"/>
+                <Label Text="{Static system:Environment.NewLine}"/>
+                <Label Text="Reservation Days:"/>
+                <Entry Text="{Binding NumberOfDays}" x:Name="numDays_Label" Unfocused="NumberOfDays_Changed"/>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Total Price:"/>
+                            <Span x:Name="span_Price" Text="{Binding TotalPrice}"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </StackLayout>
+            <!--<CollectionView
+                            x:Name="rooms_View"
+                            ItemsSource="{Binding Rooms}"
+                            SelectionMode="Single"
+                            ItemsLayout="VerticalList">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout BackgroundColor="DarkOrange"
+                                     Orientation="Horizontal">
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Room Type:"/>
+                                        <Span Text="{Binding RoomTypeName}" 
+                                              FontAttributes="Bold"/>
+                                        <Span Text="{x:Static system:Environment.NewLine}"/>
+                                        <Span Text="Room Details:"/>
+                                        <Span Text="{Binding RoomDetails}"/>
+                                        <Span Text="{x:Static system:Environment.NewLine}"/>
+                                        <Span Text="Number Of Rooms:"/>
+                                        <Span Text="{Binding NumberOfRooms,StringFormat='{0:F0}'}"
+                                              FontAttributes="Bold"/>
+                                        <Span Text="{x:Static system:Environment.NewLine}"/>
+                                        <Span Text="Available: "/>
+                                        <Span Text="{Binding Available}"
+                                              FontAttributes="Bold"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <StackLayout HorizontalOptions="StartAndExpand"
+                                         WidthRequest="90"
+                                         Padding="0,20,0,0">
+                                <Label>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Order:" />
+                                            <Span x:Name="mySpan" Text="{Binding Source={x:Reference mySpan}}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                                <Stepper x:Name="myStepper"
+                         Maximum="{Binding Available}"
+                         Increment="1"
+                         Value="{Binding OrderedRooms}"
+                         ValueChanged="myStepper_ValueChanged" />
+                            </StackLayout>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>-->
+            <Button Text="Submit"
+                    Command="{Binding SubmitReservationCommand}" 
+                    CommandParameter="{Binding .}"
+                />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

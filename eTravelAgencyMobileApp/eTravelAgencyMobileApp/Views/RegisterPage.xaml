@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:eTravelAgencyMobileApp.ViewModels"
+             xmlns:converter="clr-namespace:eTravelAgencyMobileApp.Helpers"
+             mc:Ignorable="d"
+             x:Class="eTravelAgencyMobileApp.Views.RegisterPage">
+    <ContentPage.BindingContext>
+        <vm:RegisterViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:ByteToImageConverter x:Key="imgConverter"/> 
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame BorderColor="BurlyWood"
+                   WidthRequest="90"
+                   HeightRequest="90">
+                <Image Source="{Binding Picture}"
+                       Aspect="AspectFit"
+                       x:Name="img"/>
+            </Frame>
+                <Button Text="Upload"
+                        HorizontalOptions="Center"
+                        BackgroundColor="#C70039"
+                        TextColor="WhiteSmoke"
+                        Clicked="Upload_Image"/>
+            <Entry Placeholder="First Name"
+                   Text="{Binding User.FirstName}"/>
+            <Entry Placeholder="Last Name"
+                   Text="{Binding User.LastName}"/>
+            <Entry Placeholder="Email"
+                   Text="{Binding User.Email}"/>
+            <Entry Placeholder="User Name"
+                   Text="{Binding User.UserName}"/>
+            <Entry Placeholder="Phone Number"
+                   Text="{Binding User.Phone}"/>
+            <Entry Placeholder="Password"
+                   IsPassword="True"
+                   Text="{Binding User.Password}"/>
+            <Entry Placeholder="Confirm Password"
+                   IsPassword="True"
+                   Text="{Binding User.PasswordConfirmation}"/>
+
+            <StackLayout 
+                Orientation="Horizontal"
+                HorizontalOptions="Center">
+                
+            <Button 
+                    BackgroundColor="DodgerBlue"
+                    WidthRequest="90"
+                    Text="Register"
+                    Command="{Binding RegisterCommand}"
+                    CommandParameter="{Binding User}"
+                />
+       
+            <Button BackgroundColor="DarkOrange"
+                    WidthRequest="90"
+                    Margin="10,0,0,0"
+                    Text="Go to Sign In"
+                    Clicked="GoTo_LoginPage"/>
+            
+                
+            </StackLayout>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
